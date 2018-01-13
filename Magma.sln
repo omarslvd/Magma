@@ -5,6 +5,30 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magma", "Magma\Magma.csproj", "{6086E9C8-E17A-4136-A818-A2C3F65DF2DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{024CED72-5C8D-4C22-A7EF-144314CB5B9C}"
+	ProjectSection(SolutionItems) = preProject
+		Libraries\ComponentFactory.Krypton.Design.dll = Libraries\ComponentFactory.Krypton.Design.dll
+		Libraries\ComponentFactory.Krypton.Docking.dll = Libraries\ComponentFactory.Krypton.Docking.dll
+		Libraries\ComponentFactory.Krypton.Navigator.dll = Libraries\ComponentFactory.Krypton.Navigator.dll
+		Libraries\ComponentFactory.Krypton.Ribbon.dll = Libraries\ComponentFactory.Krypton.Ribbon.dll
+		Libraries\ComponentFactory.Krypton.Toolkit.dll = Libraries\ComponentFactory.Krypton.Toolkit.dll
+		Libraries\ComponentFactory.Krypton.Workspace.dll = Libraries\ComponentFactory.Krypton.Workspace.dll
+		Libraries\gacutil.exe = Libraries\gacutil.exe
+		Libraries\gacutil.exe.config = Libraries\gacutil.exe.config
+		Libraries\gacutlrc.dll = Libraries\gacutlrc.dll
+		Libraries\RegisterToGAC.bat = Libraries\RegisterToGAC.bat
+		Libraries\System.Management.Automation.dll = Libraries\System.Management.Automation.dll
+		Libraries\UnRegisterFromGAC.bat = Libraries\UnRegisterFromGAC.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{DD4F0A34-77AE-4DC1-BEF8-6ABF2A852F4E}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\App.ico = Assets\App.ico
+		Assets\Folder.png = Assets\Folder.png
+		Assets\Help.png = Assets\Help.png
+		Assets\Play.png = Assets\Play.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
