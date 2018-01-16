@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Magma
@@ -34,6 +35,10 @@ namespace Magma
                 FileInfo fi = new FileInfo(path);
                 string fileName = fi.Name.Replace(fi.Extension, "");
                 string synopsis = "";
+
+                ScreenNotification.Wait(this);
+                EnabledControls(false);
+                StatusToolStripStatusLabel.Text = "Opening file...";
 
                 KryptonPage kryptonPage = new KryptonPage(fileName);
                 ScriptUserControl scriptUserControl = new ScriptUserControl();
@@ -109,6 +114,10 @@ namespace Magma
                 MainKryptonNavigator.Pages.Add(kryptonPage);
 
                 MainKryptonNavigator.SelectedPage = kryptonPage;
+
+                StatusToolStripStatusLabel.Text = "Ready";
+                EnabledControls(true);
+                ScreenNotification.Default(this);
             }
         }
 
@@ -122,11 +131,19 @@ namespace Magma
             string fileName = fi.Name.Replace(fi.Extension, "");
             string script = "";
 
+            ScreenNotification.Wait(this);
+            EnabledControls(false);
+            StatusToolStripStatusLabel.Text = "Executing script...";
+
             foreach (ParameterControl parameterControl in scriptUserControl.ParameterControls)
             {
                 if (string.IsNullOrEmpty(parameterControl.Control.Text) && parameterControl.IsRequired)
                 {
-                    MessageBox.Show($"The {parameterControl.Name} parameter is required");
+                    MessageBox.Show($"The {parameterControl.DisplayName} parameter is required");
+
+                    StatusToolStripStatusLabel.Text = "Ready";
+                    EnabledControls(true);
+                    ScreenNotification.Default(this);
 
                     return;
                 }
@@ -172,6 +189,10 @@ namespace Magma
                     MessageBox.Show(results[0].ToString());
                 }
             }
+
+            StatusToolStripStatusLabel.Text = "Ready";
+            EnabledControls(true);
+            ScreenNotification.Default(this);
         }
 
         private void AboutToolStripButton_Click(object sender, EventArgs e)
@@ -183,7 +204,7 @@ namespace Magma
 
         private void MainKryptonNavigator_TabCountChanged(object sender, EventArgs e)
         {
-            MainKryptonNavigator.Visible = MainKryptonNavigator.Pages.Count > 0;
+            RunToolStripButton.Enabled = MainKryptonNavigator.Visible = MainKryptonNavigator.Pages.Count > 0;
         }
 
         private Collection<string> ExecuteMainScript(PowerShell PowerShellInstance, string path)
@@ -196,21 +217,16 @@ namespace Magma
 
             PowerShellInstance.AddScript(script);
 
-            // invoke execution on the pipeline (collecting output)
             Collection<PSObject> PSOutput = PowerShellInstance.Invoke();
 
-            // check the other output streams (for example, the error stream)
             if (PowerShellInstance.Streams.Error.Count > 0)
             {
                 // error records were written to the error stream.
                 // do something with the items found.
             }
 
-            // loop through each output object item
             foreach (PSObject outputItem in PSOutput)
             {
-                // if null object was dumped to the pipeline during the script then a null
-                // object may be present here. check for null to prevent potential NRE.
                 if (outputItem != null)
                 {
                     results.Add(outputItem.BaseObject.ToString());
@@ -226,21 +242,16 @@ namespace Magma
 
             PowerShellInstance.AddScript(script);
 
-            // invoke execution on the pipeline (collecting output)
             Collection<PSObject> PSOutput = PowerShellInstance.Invoke();
 
-            // check the other output streams (for example, the error stream)
             if (PowerShellInstance.Streams.Error.Count > 0)
             {
                 // error records were written to the error stream.
                 // do something with the items found.
             }
 
-            // loop through each output object item
             foreach (PSObject outputItem in PSOutput)
             {
-                // if null object was dumped to the pipeline during the script then a null
-                // object may be present here. check for null to prevent potential NRE.
                 if (outputItem != null)
                 {
                     results.Add(outputItem.BaseObject.ToString());
@@ -248,6 +259,11 @@ namespace Magma
             }
 
             return results;
+        }
+
+        private void EnabledControls(bool enabled)
+        {
+            OpenToolStripButton.Enabled = RunToolStripButton.Enabled = MainKryptonNavigator.Enabled = enabled;
         }
     }
 }

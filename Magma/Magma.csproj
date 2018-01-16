@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
       <HintPath>..\Libraries\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -81,12 +82,14 @@
     <Compile Include="ParameterControl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenNotification.cs" />
     <Compile Include="ScriptUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ScriptUserControl.Designer.cs">
       <DependentUpon>ScriptUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskbarManager.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
