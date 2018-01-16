@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainKryptonManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.OpenToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -176,6 +177,7 @@
             this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainToolStrip);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Magma - PowerShell Script Executor";
             this.Load += new System.EventHandler(this.MainForm_Load);

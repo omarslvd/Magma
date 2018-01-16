@@ -31,8 +31,6 @@ namespace Magma
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            //openFileDialog.Multiselect = false;
-
             DialogResult dialogResult = openFileDialog.ShowDialog();
 
             if (dialogResult == DialogResult.OK)
@@ -97,7 +95,7 @@ namespace Magma
 
                         isRequired = results[0].ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase) ? true : false;
 
-                        results = ExecuteScript(powerShellInstance, $"(Get-Command -Name 'Get-AValue').Parameters['{name}'].Attributes.HelpMessage");
+                        results = ExecuteScript(powerShellInstance, $"(Get-Command -Name '{fileName}').Parameters['{name}'].Attributes.HelpMessage");
 
                         helpText = results.Count > 0 ? results[0] : "";
 
