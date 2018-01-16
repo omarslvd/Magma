@@ -35,6 +35,8 @@
             this.OpenToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.RunToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.AboutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainKryptonNavigator = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
@@ -61,7 +63,9 @@
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenToolStripButton,
             this.toolStripSeparator1,
-            this.RunToolStripButton});
+            this.RunToolStripButton,
+            this.toolStripSeparator2,
+            this.AboutToolStripButton});
             this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.MainToolStrip.Name = "MainToolStrip";
             this.MainToolStrip.Size = new System.Drawing.Size(464, 25);
@@ -93,6 +97,21 @@
             this.RunToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.RunToolStripButton.Text = "Run";
             this.RunToolStripButton.Click += new System.EventHandler(this.RunToolStripButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // AboutToolStripButton
+            // 
+            this.AboutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.AboutToolStripButton.Image = global::Magma.Properties.Resources.About;
+            this.AboutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AboutToolStripButton.Name = "AboutToolStripButton";
+            this.AboutToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.AboutToolStripButton.Text = "About...";
+            this.AboutToolStripButton.Click += new System.EventHandler(this.AboutToolStripButton_Click);
             // 
             // MainStatusStrip
             // 
@@ -208,5 +227,7 @@
         private ScriptUserControl scriptUserControl1;
         private ScriptUserControl scriptUserControl2;
         private ScriptUserControl scriptUserControl3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton AboutToolStripButton;
     }
 }

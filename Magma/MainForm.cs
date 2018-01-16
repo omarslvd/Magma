@@ -22,11 +22,6 @@ namespace Magma
             MainKryptonNavigator.Pages.Clear();
         }
 
-        private void MainKryptonNavigator_TabCountChanged(object sender, EventArgs e)
-        {
-            MainKryptonNavigator.Visible = MainKryptonNavigator.Pages.Count > 0;
-        }
-
         private void OpenToolStripButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -177,6 +172,18 @@ namespace Magma
                     MessageBox.Show(results[0].ToString());
                 }
             }
+        }
+
+        private void AboutToolStripButton_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+
+            aboutForm.ShowDialog();
+        }
+
+        private void MainKryptonNavigator_TabCountChanged(object sender, EventArgs e)
+        {
+            MainKryptonNavigator.Visible = MainKryptonNavigator.Pages.Count > 0;
         }
 
         private Collection<string> ExecuteMainScript(PowerShell PowerShellInstance, string path)
