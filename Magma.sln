@@ -25,9 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{DD4F0A34-77AE-4DC1-BEF8-6ABF2A852F4E}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\About.png = Assets\About.png
 		Assets\App.ico = Assets\App.ico
 		Assets\Folder.png = Assets\Folder.png
 		Assets\Help.png = Assets\Help.png
+		Assets\MarvelComicsMagma.jpg = Assets\MarvelComicsMagma.jpg
 		Assets\Play.png = Assets\Play.png
 	EndProjectSection
 EndProject
