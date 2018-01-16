@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Magma
 {
@@ -8,12 +9,14 @@ namespace Magma
 
         public string DisplayName { get; set; }
 
-        public ParameterDataType DataType { get; set; }
+        public Type DataType { get; set; }
 
         public ParameterControlType ControlType { get; set; }
 
         public bool IsRequired { get; set; }
 
         public string HelpText { get; set; }
+
+        public Control Control { get; set; }
     }
 }

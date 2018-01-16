@@ -10,6 +10,8 @@ namespace Magma
 {
     public partial class ScriptUserControl : UserControl
     {
+        public string Path { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -71,13 +73,56 @@ namespace Magma
                             kryptonLabel.Text = $"{parameterControl.DisplayName} (optional)";
                         }
 
-                        KryptonTextBox kryptonTextBox = new KryptonTextBox();
+                        if (parameterControl.ControlType == ParameterControlType.Numeric)
+                        {
+                            KryptonNumericUpDown kryptonNumericUpDown = new KryptonNumericUpDown();
 
-                        kryptonTextBox.Name = $"{parameterControl.Name}KryptonTextBox";
-                        kryptonTextBox.Dock = DockStyle.Fill;
+                            //kryptonNumericUpDown.DecimalPlaces = 4;
+                            kryptonNumericUpDown.ResetText();
+                            parameterControl.Control = kryptonNumericUpDown;
 
-                        ParameterTableLayoutPanel.Controls.Add(kryptonLabel, 0, i);
-                        ParameterTableLayoutPanel.Controls.Add(kryptonTextBox, 1, i);
+                            kryptonNumericUpDown.Name = $"{parameterControl.Name}KryptonNumericUpDown";
+                            kryptonNumericUpDown.Dock = DockStyle.Fill;
+
+                            ParameterTableLayoutPanel.Controls.Add(kryptonLabel, 0, i);
+                            ParameterTableLayoutPanel.Controls.Add(kryptonNumericUpDown, 1, i);
+                        }
+                        else if (parameterControl.ControlType == ParameterControlType.FileDialog)
+                        {
+                            KryptonFileDialogTextBox kryptonFileDialogTextBox = new KryptonFileDialogTextBox();
+
+                            parameterControl.Control = kryptonFileDialogTextBox;
+
+                            kryptonFileDialogTextBox.Name = $"{parameterControl.Name}KryptonFileDialogTextBox";
+                            kryptonFileDialogTextBox.Dock = DockStyle.Fill;
+
+                            ParameterTableLayoutPanel.Controls.Add(kryptonLabel, 0, i);
+                            ParameterTableLayoutPanel.Controls.Add(kryptonFileDialogTextBox, 1, i);
+                        }
+                        else if (parameterControl.ControlType == ParameterControlType.FolderDialog)
+                        {
+                            KryptonFolderDialogTextBox kryptonFolderDialogTextBox = new KryptonFolderDialogTextBox();
+
+                            parameterControl.Control = kryptonFolderDialogTextBox;
+
+                            kryptonFolderDialogTextBox.Name = $"{parameterControl.Name}KryptonFolderDialogTextBox";
+                            kryptonFolderDialogTextBox.Dock = DockStyle.Fill;
+
+                            ParameterTableLayoutPanel.Controls.Add(kryptonLabel, 0, i);
+                            ParameterTableLayoutPanel.Controls.Add(kryptonFolderDialogTextBox, 1, i);
+                        }
+                        else
+                        {
+                            KryptonTextBox kryptonTextBox = new KryptonTextBox();
+
+                            parameterControl.Control = kryptonTextBox;
+
+                            kryptonTextBox.Name = $"{parameterControl.Name}KryptonTextBox";
+                            kryptonTextBox.Dock = DockStyle.Fill;
+
+                            ParameterTableLayoutPanel.Controls.Add(kryptonLabel, 0, i);
+                            ParameterTableLayoutPanel.Controls.Add(kryptonTextBox, 1, i);
+                        }
 
                         if (!string.IsNullOrEmpty(parameterControl.HelpText))
                         {
