@@ -124,6 +124,8 @@ namespace Magma
                             ParameterTableLayoutPanel.Controls.Add(kryptonTextBox, 1, i);
                         }
 
+                        parameterControl.Control.Text = parameterControl.DefaultValue;
+
                         if (!string.IsNullOrEmpty(parameterControl.HelpText))
                         {
                             PictureBox pictureBox = new PictureBox();

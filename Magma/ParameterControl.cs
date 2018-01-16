@@ -15,6 +15,8 @@ namespace Magma
 
         public bool IsRequired { get; set; }
 
+        public string DefaultValue { get; set; }
+
         public string HelpText { get; set; }
 
         public Control Control { get; set; }

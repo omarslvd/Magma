@@ -68,6 +68,7 @@ namespace Magma
                         Type dataType = null;
                         ParameterControlType parameterControlType = ParameterControlType.Text;
                         bool isRequired = false;
+                        string defaultValue = "";
                         string helpText = "";
 
                         results = ExecuteScript(powerShellInstance, $"(Get-Help {fileName} -Full).Parameters.Parameter[{i}].Name");
@@ -95,11 +96,15 @@ namespace Magma
 
                         isRequired = results[0].ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase) ? true : false;
 
+                        results = ExecuteScript(powerShellInstance, $"(Get-Help {fileName} -Full).Parameters.Parameter[{i}].DefaultValue");
+
+                        defaultValue = results.Count > 0 ? results[0].ToString() : "";
+
                         results = ExecuteScript(powerShellInstance, $"(Get-Command -Name '{fileName}').Parameters['{name}'].Attributes.HelpMessage");
 
                         helpText = results.Count > 0 ? results[0] : "";
 
-                        parameterControls.Add(new ParameterControl() { Name = name, DisplayName = description, DataType = dataType, ControlType = parameterControlType, IsRequired = isRequired, HelpText = helpText });
+                        parameterControls.Add(new ParameterControl() { Name = name, DisplayName = description, DataType = dataType, ControlType = parameterControlType, IsRequired = isRequired, DefaultValue = defaultValue, HelpText = helpText });
                     }
                 }
 
