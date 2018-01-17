@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -224,10 +225,17 @@ namespace Magma
 
             Collection<PSObject> PSOutput = PowerShellInstance.Invoke();
 
+            StringBuilder sb = new StringBuilder();
+
             if (PowerShellInstance.Streams.Error.Count > 0)
             {
-                // error records were written to the error stream.
-                // do something with the items found.
+                foreach (ErrorRecord error in PowerShellInstance.Streams.Error)
+                {
+                    sb.AppendLine(error.Exception.Message);
+                    sb.AppendLine();
+                }
+
+                MessageBox.Show(sb.ToString());
             }
 
             foreach (PSObject outputItem in PSOutput)
@@ -249,10 +257,17 @@ namespace Magma
 
             Collection<PSObject> PSOutput = PowerShellInstance.Invoke();
 
+            StringBuilder sb = new StringBuilder();
+
             if (PowerShellInstance.Streams.Error.Count > 0)
             {
-                // error records were written to the error stream.
-                // do something with the items found.
+                foreach (ErrorRecord error in PowerShellInstance.Streams.Error)
+                {
+                    sb.AppendLine(error.Exception.Message);
+                    sb.AppendLine();
+                }
+
+                MessageBox.Show(sb.ToString());
             }
 
             foreach (PSObject outputItem in PSOutput)
